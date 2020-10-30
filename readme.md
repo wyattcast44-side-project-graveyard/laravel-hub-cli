@@ -38,9 +38,9 @@ This would install the default branch of Laravel, and the application name would
 
 But `laravel-hub` can do much more, for example we can use `laravel-hub` to: 
 
-- set some env variable
+- set some env variables
 - install our favorite composer packages
-- migrate our database.
+- migrate our database
 
 That compose file would look something like this:
 
@@ -48,15 +48,15 @@ That compose file would look something like this:
 name: Test Application
 laravel: default
 env:
-  - APP_NAME: My Application
-  - APP_URL: http://application.test
-  - DB_NAME: application_db
-  - DB_USERNAME: root
+    - APP_NAME: My Application
+    - APP_URL: http://application.test
+    - DB_NAME: application_db
+    - DB_USERNAME: root
 packages:
-  - spatie/once
-  - laravel/telescope
+    - spatie/once
+    - laravel/telescope
 artisan:
-  - migrate
+    - migrate
 ```
 
 ## Compose File API
@@ -65,9 +65,11 @@ artisan:
 name: # The name of your application
 laravel: # Which version of laravel to install (default, dev, specific version, ex: 8.0.1)
 env: # Allows you to set env values in your env file
-  - EnvKey: ValueToSet
+    - EnvKey: ValueToSet
 packages: # Allows you to add packages via composer, composer will attempt to install all listed
-  - vendor/package
+    - vendor/package
 artisan: # Allows you to run artisan commands
-  - command-name
+    - command-name
+composer: # Allows you to run composer commands
+    - command
 ```
