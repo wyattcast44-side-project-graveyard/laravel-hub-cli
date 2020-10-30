@@ -79,3 +79,28 @@ artisan: # Allows you to run artisan commands
 composer: # Allows you to run composer commands
     - command
 ```
+
+If you need to reference PHP, for example when running `php artisan`, you should use `@php`, `laravel-hub` will ensure that the user's proper PHP executable path is injected. 
+
+The same applies for composer, npm, and yarn -- all should be referenced with a preceding `@` sign.
+
+## Example Compose File
+
+```yaml
+name: Wyatt's Laravel Skeletom
+laravel: default
+env:
+    - APP_NAME: Application
+    - APP_URL: http://application.test
+    - DB_NAME: application
+    - DB_USERNAME: root
+packages:
+    - laravel/telescope
+        - @php artisan telescope:install
+        - @php artisan migrate
+    - livewire/livewire 
+    - laravel-frontend-presets/tall:
+        - @php artisan ui tall --auth
+        - @npm install
+        - @npm dev
+```
