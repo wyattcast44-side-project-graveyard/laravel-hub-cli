@@ -54,7 +54,9 @@ env:
     - DB_USERNAME: root
 packages:
     - spatie/once
-    - laravel/telescope
+    - laravel/telescope:
+        - php artisan telescope:install
+        - php artisan migrate
 artisan:
     - migrate
 ```
@@ -67,6 +69,10 @@ laravel: # Which version of laravel to install (default, dev, specific version, 
 env: # Allows you to set env values in your env file
     - EnvKey: ValueToSet
 packages: # Allows you to add packages via composer, composer will attempt to install all listed
+    - vendor/package
+    - vendor/package: # You can also list commands to be ran after your package has installed
+        - php artisan package:install
+packages-dev: # Allows you to add packages via composer, composer will attempt to install all listed in the required-dev sectio
     - vendor/package
 artisan: # Allows you to run artisan commands
     - command-name
