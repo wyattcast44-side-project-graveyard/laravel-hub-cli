@@ -95,7 +95,7 @@ env:
     - DB_NAME: application
     - DB_USERNAME: root
 packages:
-    - laravel/telescope
+    - laravel/telescope:
         - @php artisan telescope:install
         - @php artisan migrate
     - livewire/livewire 
