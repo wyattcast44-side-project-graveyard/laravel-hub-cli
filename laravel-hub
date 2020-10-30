@@ -1,0 +1,29 @@
+#!/usr/bin/env php
+<?php
+
+if (file_exists(__DIR__ . '/../../../autoload.php')) {
+    require __DIR__ . '/../../../autoload.php';
+} elseif (file_exists(__DIR__ . '/../vendor/autoload.php')) {
+    require __DIR__ . '/../vendor/autoload.php';
+} else {
+    require './vendor/autoload.php';
+}
+
+use Illuminate\Events\Dispatcher;
+use NunoMaduro\Collision\Provider;
+use Illuminate\Console\Application;
+use Illuminate\Container\Container;
+use LaravelHub\Installer\Commands\NewCommand;
+use LaravelHub\Installer\Commands\ComposeCommand;
+
+$container = tap(new Container, function (Container $container) {
+    $container->setInstance($container);
+});
+
+(new Provider)->register();
+
+$app = tap(new Application($container, new Dispatcher($container), 'Version 0.1.0'), function (Application $app) {
+    $app->setName('Laravel Hub CLI');
+    $app->resolve(NewCommand::class);
+    $app->resolve(ComposeCommand::class);
+})->run();
