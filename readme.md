@@ -87,7 +87,7 @@ The same applies for composer, npm, and yarn -- all should be referenced with a 
 ## Example Compose File
 
 ```yaml
-name: Wyatt's Laravel Skeletom
+name: Wyatt's Laravel Skeleton
 laravel: default
 env:
     - APP_NAME: Application
